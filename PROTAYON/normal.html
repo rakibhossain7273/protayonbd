@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>সনদ প্রিভিউ</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+  <style>
+    body { font-family: 'Noto Sans Bengali', sans-serif; background: #f8f9fb; padding: 20px; }
+    .a4-page {
+      width: 21cm; min-height: 29.7cm;
+      margin: auto; background: white; padding: 2cm;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    .header { text-align: center; color: black; }
+    .header h2 { margin: 0; font-size: 20px; }
+    .header h3 { margin: 0; font-size: 28px; color: navy; font-weight: bold; text-decoration: underline; }
+    .header p { margin: 5px 0; font-size: 16px; color: navy; }
+    hr { border: 2px solid navy; margin: 10px 0; }
+    .meta { display: flex; justify-content: space-between; font-size: 16px; margin: 20px 0; }
+    .title-section {
+      margin-top: 40px;
+      text-align: center;
+    }
+    .title-section h3 {
+      font-size: 22px;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .body-text {
+      font-size: 18px;
+      line-height: 1.8;
+      text-align: justify;
+      margin-top: 30px;
+    }
+    .qr {
+      margin-top: 40px;
+    }
+    .footer {
+      text-align: right;
+      margin-top: 50px;
+      font-size: 16px;
+    }
+    .print-btn {
+      text-align: center;
+      margin-top: 20px;
+    }
+    @media print {
+      .print-btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="a4-page" id="printArea">
+    <div class="header">
+      <h2>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</h2>
+      <h3 id="unionName">ইউনিয়ন পরিষদ</h3>
+      <p id="unionAddr">উপজেলা: ইটনা, জেলা: কিশোরগঞ্জ।</p>
+      <hr>
+    </div>
+    <div class="meta">
+      <div>সনদ নং: <span id="refNo"></span></div>
+      <div>তারিখ: <span id="date"></span></div>
+    </div>
+    <div class="title-section">
+      <h3 id="title">প্রত্যয়ন পত্র</h3>
+    </div>
+    <div class="body-text" id="certBody">সনদ লোড হচ্ছে...</div>
+    <div class="qr" id="qrZone"></div>
+    <div class="footer" id="chairmanFooter"></div>
+  </div>
+  <div class="print-btn">
+    <button onclick="window.print()">প্রিন্ট করুন</button>
+  </div>
+
+  <script>
+    const url = new URLSearchParams(window.location.search);
+    const type = url.get("type");
+    const union = url.get("union")?.split("|")[0] || "";
+    const post = url.get("union")?.split("|")[1] || "";
+    const chairman = url.get("union")?.split("|")[2] || "";
+    const name = url.get("name");
+    const father = url.get("father");
+    const mother = url.get("mother");
+    const nid = url.get("nid");
+    const birth = url.get("birth");
+    const village = url.get("village");
+    const ward = url.get("ward");
+
+    document.getElementById("unionName").innerText = union + " ইউনিয়ন পরিষদ";
+    document.getElementById("unionAddr").innerText = "ডাকঘর: " + post + ", উপজেলা: ইটনা, জেলা: কিশোরগঞ্জ।";
+    document.getElementById("refNo").innerText = union + "/ইউপি/সনদ নং-" + Math.floor(1000 + Math.random() * 9000);
+    document.getElementById("date").innerText = new Date().toLocaleDateString('bn-BD');
+
+    const title = (type === "newVoter") ? "প্রত্যয়ন পত্র" : "প্রত্যয়ন পত্র";
+    document.getElementById("title").innerText = title;
+
+    const idText = (type === "newVoter") ?
+      `জন্ম নিবন্ধন নাম্বার: ${birth}` :
+      `জাতীয় পরিচয়পত্র নম্বর: ${nid}`;
+
+    const bodyText = `
+                 এই মর্মে প্রত্যায়ন করা যাচ্ছে যে, নাম: ${name}, পিতা: ${father}, মাতা: ${mother}, ${idText}, গ্রাম: ${village}, ডাকঘর: ${post}, ইউনিয়ন: ${union}, ওয়ার্ড: ${ward}, উপজেলা: ইটনা, জেলা: কিশোরগঞ্জ। সে অত্র এলাকার স্থায়ী বাসিন্দা এবং জন্মসূত্রে বাংলাদেশের নাগরিক।
+      ${(type === "newVoter") ? " তিনি আমার ব্যক্তিগতভাবে পরিচিত এবং আমার জানামতে তিনি সমাজ কিংবা রাষ্ট্র বিরোধী কোন কর্মকান্ডে জড়িত নহেন। তার স্বাভাব চত্রিত ভালো ।   </b>" : ""}
+      <br><br>আমি তার সর্বাঙ্গীন সাফল্য কামনা করি। 
+    `;
+    document.getElementById("certBody").innerHTML = bodyText;
+
+    // QR
+    const qrText = `${union} ইউনিয়ন পরিষদ হতে সনদটি প্রদান করা হইলো।
+নাম: ${name}
+পিতা: ${father}
+মাতা: ${mother}
+${idText}
+চেয়ারম্যান: ${chairman}
+চেয়ারম্যান তদ্বা স্বাক্ষর কৃত এবং ওয়ার্ড মেম্বার দ্বারা যাচাই কৃত।`;
+    const qr = new QRious({
+      value: qrText,
+      size: 130,
+      background: "white",
+      foreground: "black"
+    });
+    const qrImg = document.createElement("img");
+    qrImg.src = qr.toDataURL();
+    document.getElementById("qrZone").appendChild(qrImg);
+
+    document.getElementById("chairmanFooter").innerHTML = `
+      <b>${chairman}</b><br>চেয়ারম্যান<br>${union} ইউনিয়ন পরিষদ<br>ইটনা, কিশোরগঞ্জ
+    `;
+  </script>
+</body>
+</html>

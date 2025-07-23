@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BirthCertificate-20144813343109322</title>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.0/css/bootstrap.min.css" integrity="sha512-NZ19NrT58XPK5sXqXnnvtf9T5kLXSzGQlVZL9taZWeTBtXoN3xIfTdxbkQh6QSoJfJgpojRqMfhyqBAAEeiXcA==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link href="https://assist.taka0nai.my.id/BS/nibondon.css" rel="stylesheet"/>
+<link href="https://cdn.rawgit.com/sh4hids/bangla-web-fonts/solaimanlipi/stylesheet.css" rel="stylesheet"/>
+<link href="https://fonts.cdnfonts.com/css/solaimanlipi" rel="stylesheet"/>
+<style>
+		@page {
+			margin: 0;
+			size: A4;
+		}
+		.bmarg {
+			margin-top: -1px;
+		}
+		.bngla {
+			font-family: SolaimanLipi !important;
+			font-size: 16px !important;
+		}
+	</style>
+<link href="https://fonts.cdnfonts.com/css/arial?styles=48878" rel="stylesheet"/>
+<style>
+		@import url('https://fonts.cdnfonts.com/css/arial?styles=48878');
+		@media print {
+			#button_group {
+				display: none;
+			}
+		}
+		.correct_duplicate {
+			position: absolute;
+			border: 2px solid #111;
+			padding: 3px 8px;
+			right: 45px;
+			top: 63px;
+			font-size: 14.4px;
+			font-family: SolaimanLipi !important;
+		}
+		.button_group button {
+			background: orange;
+			padding: 8px 20px;
+			color: white;
+			font-weight: bold;
+			border: 1px solid;
+		}
+		 #displayRegNumber {
+    font-size: 20px !important; /* প্রয়োজনমতো সাইজ সেট করুন */
+    height: auto !important; 
+    width: auto !important;
+  }
+	</style>
+</head>
+<body>
+<input hidden="" id="forBarCode" type="text" value="20186113154117630"/>
+<div class="a4_page" id="a4_page">
+<div class="main_wrapper">
+<div class="correct_duplicate" style="display:none;">
+<p></p>
+</div>
+<img alt="" class="main_logo" src="https://assist.taka0nai.my.id/BS/Background.png"/>
+<span style="z-index: 10;">
+<div class="mr_header">
+<div class="left_part_hidden"></div>
+<div class="left_part">
+<img alt="" src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&amp;data=https://bdris.gov.bd/certificate/verify?key=zVY6c0rKhtspMg/o7qiCb9eATJG4jDPXHmFI5RLBWdkyO2lU3/1fQaxwZu8v"/>
+<h2 style="text-transform:uppercase">EGAMZ</h2>
+</div>
+<div class="middle_part">
+<img alt="" class="main_logo_r" src="https://assist.taka0nai.my.id/BS/Govicon.png"/>
+<img alt="" src="https://assist.taka0nai.my.id/BS/Govicon.png" style="opacity: 0;"/>
+<h2>Government of the People’s Republic of Bangladesh</h2>
+<p class="office">Office of the Registrar, Birth and Death Registration</p>
+<p id="officeName">Dhanpur Union Parishad</p>
+<p class="address2">Itna, Kishoreganj</p>
+<p class="rule_y">(Rule 9, 10)</p>
+<h1><span class="bn" style="font-family: SolaimanLipi!important;font-size: 19.5px!important; letter-spacing:0!important">জন্ম নিবন্ধন সনদ /</span> <span class="en" style="font-size: 20px">Birth Registration Certificate</span></h1>
+</div>
+<div class="right_part_hidden"></div>
+<div class="right_part">
+<canvas height="120" id="barcode" style="height: 30px; width:220px;" width="310"></canvas>
+</div>
+</div>
+<div class="mr_body">
+<div class="top_part1">
+<div class="left">
+<p>Date of Registration</p>
+<p>10/06/2022</p>
+</div>
+<h1 id="displayRegNumber"></h1>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const data = JSON.parse(sessionStorage.getItem('birthCertificateData'));
+    if (data) {
+      document.getElementById('displayRegNumber').innerText = data.regNumber;
+    }
+  });
+</script>
+<div class="right">
+<p>Date of Issuance</p>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const data = JSON.parse(sessionStorage.getItem('birthCertificateData'));
+    if (data) {
+      document.getElementById('displayregDate').innerText = data.regNumber;
+    }
+  });
+
+							<p id="displayregDate"></p>
+							</script>
+</div>
+</div>
+<div class="middle">
+<div class="new_td_2" style="margin-top: 2px;margin-bottom: 5px;">
+<div class="left">
+<div class="part1">
+<p class="bn">Date of Birth<span class="clone" style="margin-left: 35px;">:</span></p>
+</div>
+<div class="part2">
+<p><span class="bn" id="dob">08/10/2014</span></p>
+</div>
+</div>
+
+<div class="right">
+<div class="part1">
+<p><span class="clone" style="margin-left: 65px;">Sex :</span></p>
+</div>
+<div class="part2">
+<p><span>Male</span></p>
+</div>
+</div>
+</div>
+<div class="td" style="margin-top: 5px;margin-bottom: 24px !important;">
+<div class="left">
+<div class="part1" style="width: 130px;">
+<p>In Word<span>:</span></p>
+</div>
+<div class="part2" style="width: 400px;">
+<p><span id="dobWord" name="dobb" style="margin-left:5px">Eighth October, Two Thousand Fourteen</span></p>
+</div>
+</div>
+</div>
+<div class="new_td" style="margin-top: 7px;">
+<div class="left left_self">
+<div class="part1">
+<p class="bn" style="font-family: SolaimanLipi!important;font-size: 16px!important;margin-top: -2.5px;">নাম<span class="clone" style="margin-left: 103px;">:</span></p>
+</div>
+<div class="part2" id="name_data_bn">
+<p><span class="bn" id="nameBn" style="font-family: SolaimanLipi!important;font-size: 16px !important;">নিলয় দাস</span></p>
+</div>
+</div>
+<div class="right self_name_en">
+<div class="part1">
+<p style="font-weight:500">Name<span class="clone" style="margin-left: 69px;">:</span></p>
+</div>
+<div class="part2" id="en_size">
+<p><span id="nameEn" style="font-weight:500">NILOY DAS</span></p>
+</div>
+</div>
+</div>
+<div class="new_td" id="mother_content" >
+<div class="left left_self">
+<div class="part1">
+<p class="bn" style="font-family: SolaimanLipi!important;font-size: 16px!important;margin-top: -2.5px;">মাতা<span class="clone" style="margin-left: 98px;">:</span></p>
+</div>
+<div class="part2" id="motherName_data_bn">
+<p style="margin-top: -1.5px;"><span class="bn" id="motherBn" style="font-family: SolaimanLipi!important;font-size: 16px !important;">সংগীতা রানী  দাস</span></p>
+</div>
+</div>
+<div class="right">
+<div class="part1">
+<p style="font-weight:500">Mother<span class="clone" style="margin-left: 62px;">:</span></p>
+</div>
+<div class="part2" id="en_size">
+<p><span id="motherEn" style="font-weight:500">SANGITA RANI  DAS</span></p>
+</div>
+</div>
+</div>
+<div class="new_td" id="motherNanality_content" >
+<div class="left left_self">
+<div class="part1">
+<p class="bn" style="font-family: SolaimanLipi!important;font-size: 16px!important;margin-top: -2.5px;">মাতার জাতীয়তা<span class="clone" style="margin-left: 32px;">:</span></p>
+</div>
+<div class="part2">
+<p><span class="bn" style="font-family: SolaimanLipi!important;font-size: 16px !important;">বাংলাদেশি</span></p>
+</div>
+</div>
+<div class="right">
+<div class="part1">
+<p style="font-weight:500">Nationality<span class="clone" style="margin-left: 39px;">:</span></p>
+</div>
+<div class="part2" id="en_size">
+<p><span style="font-weight:500">Bangladeshi</span></p>
+</div>
+</div>
+</div>
+<div class="new_td">
+<div class="left left_self">
+<div class="part1">
+<p class="bn" style="font-family: SolaimanLipi!important;font-size: 16px!important;margin-top: -2.5px;">পিতা<span class="clone" style="margin-left: 96.5px;">:</span></p>
+</div>
+<div class="part2" id="fatherName_data_bn">
+<p><span class="bn" id="fatherBn" style="font-family: SolaimanLipi!important;font-size: 16px !important;">সতিন্দ্র  দাস</span></p>
+</div>
+</div>
+<div class="right">
+<div class="part1">
+<p style="font-weight:500">Father<span class="clone" style="margin-left: 66px;">:</span></p>
+</div>
+<div class="part2" id="en_size">
+<p><span id="fatherEn" style="font-weight:500">SOTINDRA  DAS</span></p>
+</div>
+</div>
+</div>
+<div class="new_td" id="fatherNanality_content" >
+<div class="left left_self">
+<div class="part1">
+<p class="bn" style="font-family: SolaimanLipi!important;font-size: 16px!important;margin-top: -2.5px;">পিতার জাতীয়তা<span class="clone" style="margin-left: 31px;">:</span></p>
+</div>
+<div class="part2">
+<p><span class="bn" style="font-family: SolaimanLipi!important;font-size: 16px !important;"> বাংলাদেশি</span></p>
+</div>
+</div>
+<div class="right">
+<div class="part1">
+<p style="font-weight:500">Nationality<span class="clone" style="margin-left: 39px;">:</span></p>
+</div>
+<div class="part2" id="en_size">
+<p><span style="font-weight:500">Bangladeshi</span></p>
+</div>
+</div>
+</div>
+<div class="new_td" >
+<div class="left">
+<div class="part1">
+<p class="bn" style="font-family: SolaimanLipi!important;font-size: 16px!important;margin-top: -2.5px;">জন্মস্থান<span class="clone" style="margin-left: 81px;">:</span></p>
+</div>
+<div class="part2">
+<p><span class="bn" id="birthPlaceBn" style="font-family: SolaimanLipi!important;font-size: 16px !important;">কিশোরগঞ্জ, বাংলাদেশ</span></p>
+</div>
+</div>
+<div class="right">
+<div class="part1">
+<p style="width: 125px; font-weight:500">Place of Birth<span class="clone" style="margin-left: 20px;margin-right: 0;">:</span></p>
+</div>
+<div class="part2" id="en_size">
+<p><span id="birthPlaceEn" style="font-weight:500">Kishoreganj, Bangladesh</span></p>
+</div>
+</div>
+</div>
+<div class="new_td" style="margin-top: 30px;">
+<div class="left left_self">
+<div class="part1">
+<p class="bn" style="width: 142px;font-family: SolaimanLipi!important;font-size: 16px!important;margin-top: -2.5px;">স্থায়ী ঠিকানা<span class="clone" style="margin-left:56px;margin-right: 0;">:</span></p>
+</div>
+<div class="part2">
+<p><span class="bn" id="addressBn" style="font-family: SolaimanLipi!important;font-size: 16px !important;">৯৩১, ধীনশপুর, ওয়ার্ড নং - ৪, ধনপুর, ইটনা, কিশোরগঞ্জ</span></p>
+</div>
+</div>
+<div class="right">
+<div class="part1">
+<p style="display:flex; width:126px; font-weight:500">Permanent<br/>Address<span class="clone" style="margin-left: 36px;">:</span></p>
+</div>
+<div class="part2" id="en_size">
+<p><span id="addressEn" style="font-weight:500">931, Dhinoshpur, Ward - 4, Dhanpur, Itna, Kishoreganj</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</span>
+<div class="mr_footer">
+<div class="top">
+<div class="left">
+<h2 style="width:10rem; margin-top: 0px;">Seal &amp; Signature</h2>
+<p style="margin-top: 0px;">Assistant to Registrar</p>
+<p style="margin-top: 0px;">(Preparation, Verification)</p>
+</div>
+<div class="right">
+<h2 style="width:10rem">Seal &amp; Signature<h2>
+<p>Registrar</p>
+</h2></h2></div>
+</div>
+<div class="bottom" style="margin-top:8rem">
+<p>This certificate is generated from bdris.gov.bd, and to verify this certificate, please scan the above QR Code &amp; Bar Code.</p>
+</div>
+</div>
+</div>
+</div>
+<script crossorigin="anonymous" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+<script>
+		let dob_n = document.getElementById('forBarCode').value;
+		JsBarcode("#barcode", dob_n, {
+			format: "CODE128",
+			displayValue: false,
+		});
+	</script>
+<script>
+		window.print();
+
+		$(document).ready(function() {
+			var elementWidth = $('#name_data_bn').height();
+			if (Number(Math.floor(elementWidth)) > 23) {
+				$('#mother_content').css("margin-top", "0px");
+			}
+
+			var elementWidth = $('#motherName_data_bn').height();
+			if (Number(Math.floor(elementWidth)) > 23) {
+				$('#motherNanality_content').css("margin-top", "0px");
+			}
+
+			var elementWidth = $('#fatherName_data_bn').height();
+			if (Number(Math.floor(elementWidth)) > 23) {
+				$('#fatherNanality_content').css("margin-top", "0px");
+			}
+		});
+	</script>
+<script>
+		function getRandomFiveCapitalLetterWord() {
+			const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			let word = "";
+			for (let i = 0; i < 4; i++) {
+				const randomIndex = Math.floor(Math.random() * alphabet.length);
+
+				word += alphabet[randomIndex];
+			}
+			return word;
+		}
+		const randomCapitalWord = getRandomFiveCapitalLetterWord();
+		document.getElementById('randomLetter').innerText = randomCapitalWord
+		document.addEventListener('contextmenu', event => event.preventDefault());
+	</script>
+<script crossorigin="anonymous" data-cf-beacon='{"rayId":"960722b7c800002c","version":"2025.7.0","r":1,"token":"31c233ee048049e6a367a0f248ca891b","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' defer="" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const data = JSON.parse(sessionStorage.getItem('birthCertificateData'));
+    if (data) {
+      document.getElementById('displayRegNumber').innerText = data.regNumber;
+      document.getElementById('displayregDate').innerText = data.issueDate;
+      document.querySelector("#name_data_bn span").innerText = data.nameBn;
+      document.querySelector(".self_name_en span").innerText = data.nameEn;
+      document.querySelector("#motherName_data_bn span").innerText = data.motherBn;
+      document.querySelector("#mother_content .right .part2 span").innerText = data.motherEn;
+      document.querySelector("#fatherName_data_bn span").innerText = data.fatherBn;
+      document.querySelector("#fatherNanality_content .right .part2 span").innerText = data.fatherEn;
+      document.querySelector(".top_part1 .left p:nth-child(2)").innerText = data.regDate;
+      document.querySelector(".top_part1 .right p:nth-child(2)").innerText = data.issueDate;
+      document.querySelector(".new_td_2 .left .part2 span").innerText = data.dob;
+      document.querySelector(".new_td_2 .right .part2 span").innerText = data.gender;
+      document.querySelector(".td .part2 span").innerText = data.dobWord;
+      document.querySelectorAll(".new_td")[4].querySelector(".part2 span").innerText = data.birthPlaceBn;
+      document.querySelectorAll(".new_td")[4].querySelector(".right .part2 span").innerText = data.birthPlaceEn;
+      document.querySelectorAll(".new_td")[5].querySelector(".part2 span").innerText = data.addressBn;
+      document.querySelectorAll(".new_td")[5].querySelector(".right .part2 span").innerText = data.addressEn;
+    }
+  });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const data = JSON.parse(sessionStorage.getItem('birthCertificateData'));
+  if (data) {
+    const mapping = {
+      'displayRegNumber': 'regNumber',
+      'displayregDate': 'issueDate',
+      'dob': 'dob',
+      'dobWord': 'dobWord',
+      'nameBn': 'nameBn',
+      'nameEn': 'nameEn',
+      'motherBn': 'motherBn',
+      'motherEn': 'motherEn',
+      'fatherBn': 'fatherBn',
+      'fatherEn': 'fatherEn',
+      'birthPlaceBn': 'birthPlaceBn',
+      'birthPlaceEn': 'birthPlaceEn',
+      'addressBn': 'addressBn',
+      'addressEn': 'addressEn'
+    };
+	function generateCertificate() {
+  const data = {
+    // অন্যান্য ফিল্ডের সাথে...
+    officeName: document.getElementById('officeName')?.value,
+    // ...
+  };
+  sessionStorage.setItem('birthCertificateData', JSON.stringify(data));
+  window.open('certificate.html', '_blank');
+}
+
+    for (const id in mapping) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.textContent = data[mapping[id]];
+      }
+    }
+  }
+});
+</script></body>
+</html>

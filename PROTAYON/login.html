@@ -1,0 +1,719 @@
+
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Secure Admin Panel Login">
+    <meta name="author" content="Laravel Admin Panel">
+    <meta name="csrf-token" content="7BQFsKvngixGndtFTt4sejYXEdXnMPhm1STa6l1C">
+
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+
+    <title>eseba - Secure Login</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="https://eksheva.top/admin_assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="https://eksheva.top/admin_assets/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom Login Styles -->
+    <style>
+        .login-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+            color: white;
+            border-radius: 15px 15px 0 0;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(180deg);
+            }
+        }
+
+        .login-logo {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-logo i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .login-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .form-control-user {
+            border-radius: 5px !important;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.75rem 1rem;
+        }
+
+        .form-control-user:focus {
+            border-color: #4e73df;
+            box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+            background: white;
+            transform: translateY(-1px);
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(78, 115, 223, 0.4);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .btn-login::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-login:hover::before {
+            left: 100%;
+        }
+
+        .security-badge {
+            background: linear-gradient(135deg, #1cc88a 0%, #13855c 100%);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        .security-badge i {
+            margin-right: 0.3rem;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(180deg);
+            }
+        }
+
+        .captcha-container {
+            background: #f8f9fc;
+            border: 2px dashed #e3e6f0;
+            border-radius: 8px;
+            padding: 0.8rem;
+            text-align: center;
+            margin: 0.8rem 0;
+        }
+
+        .captcha-code {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #4e73df;
+            background: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 0.3rem 0;
+            letter-spacing: 2px;
+            text-decoration: line-through;
+            text-decoration-color: #e74a3b;
+        }
+
+        .captcha-refresh {
+            background: none;
+            border: none;
+            color: #4e73df;
+            cursor: pointer;
+            margin-left: 0.5rem;
+        }
+
+        .attempt-warning {
+            background: linear-gradient(135deg, #e74a3b 0%, #c0392b 100%);
+            color: white;
+            padding: 0.6rem;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            animation: pulse 2s infinite;
+            font-size: 0.9rem;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(231, 74, 59, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 8px rgba(231, 74, 59, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(231, 74, 59, 0);
+            }
+        }
+
+
+        .password-strength {
+            height: 3px;
+            background: #e3e6f0;
+            border-radius: 2px;
+            margin-top: 0.3rem;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .strength-weak {
+            background: #e74a3b;
+            width: 25%;
+        }
+
+        .strength-fair {
+            background: #f39c12;
+            width: 50%;
+        }
+
+        .strength-good {
+            background: #f1c40f;
+            width: 75%;
+        }
+
+        .strength-strong {
+            background: #27ae60;
+            width: 100%;
+        }
+
+        /* Compact spacing */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .alert {
+            padding: 0.6rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Security features section - more compact */
+        .security-features {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e3e6f0;
+        }
+
+        .security-features .row {
+            margin: 0;
+        }
+
+        .security-features .col-4 {
+            padding: 0.5rem;
+            text-align: center;
+        }
+
+        .security-features i {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .security-features .small {
+            font-size: 0.75rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 10px;
+            }
+
+            .login-card {
+                margin: 10px;
+                border-radius: 12px;
+            }
+
+            .login-header {
+                padding: 1rem;
+                border-radius: 12px 12px 0 0;
+            }
+
+            .login-header h1 {
+                font-size: 1.3rem;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+
+            .form-group {
+                margin-bottom: 0.8rem;
+            }
+        }
+
+        @media (max-height: 700px) {
+            .login-container {
+                padding: 10px 0;
+            }
+
+            .login-header {
+                padding: 1rem;
+            }
+
+            .login-logo {
+                width: 50px;
+                height: 50px;
+                margin-bottom: 0.5rem;
+            }
+
+            .login-logo i {
+                font-size: 1.5rem;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+        }
+
+        /* Ensure scrollability */
+        body,
+        html {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        .container {
+            height: auto;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 20px 15px;
+        }
+
+        .row {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body class="login-container">
+    <!-- Floating Shapes -->
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8 col-md-9 col-sm-11">
+                <div class="card login-card border-0 shadow-lg">
+                    <!-- Login Header -->
+                    <div class="login-header">
+                        <div class="login-logo">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h1>Welcome Back!</h1>
+                        <p>Secure access to your admin panel</p>
+                        <div class="security-badge">
+                            <i class="fas fa-lock"></i>
+                            SSL Secured
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <!-- Error Messages -->
+                        
+                        <!-- Success Messages -->
+                        
+                        <!-- Failed Attempts Warning -->
+                        
+                        <!-- Login Form -->
+                        <form action="https://eksheva.top/login" method="POST" class="user" id="loginForm">
+                            <input type="hidden" name="_token" value="7BQFsKvngixGndtFTt4sejYXEdXnMPhm1STa6l1C" autocomplete="off">
+                            <!-- Security Fields -->
+                            <input type="hidden" name="form_timestamp" value="1752921842">
+                            <input type="hidden" name="browser_fingerprint" id="browserFingerprint">
+                            <input type="text" name="website" style="display:none;" tabindex="-1" autocomplete="off">
+
+                            <!-- Email Field -->
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-envelope text-primary"></i>
+                                        </span>
+                                    </div>
+                                    <input name="email" type="email"
+                                        class="form-control form-control-user "
+                                        id="email" placeholder="Enter Email Address..." value=""
+                                        required autocomplete="email" maxlength="255">
+                                </div>
+                                                            </div>
+
+                            <!-- Password Field -->
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-lock text-primary"></i>
+                                        </span>
+                                    </div>
+                                    <input name="password" type="password"
+                                        class="form-control form-control-user "
+                                        id="password" placeholder="Password" required autocomplete="current-password"
+                                        maxlength="255">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                                            </div>
+
+                            
+
+                            <!-- Remember Me -->
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox small">
+                                    <input name="remember" type="checkbox" class="custom-control-input" id="customCheck"
+                                        >
+                                    <label class="custom-control-label" for="customCheck">
+                                        Remember Me for 30 days
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Login Button -->
+                            <button type="submit" class="btn btn-primary btn-login btn-block" id="loginButton">
+                                <i class="fas fa-sign-in-alt mr-2"></i>
+                                <span class="button-text">Sign In Securely</span>
+                            </button>
+                        </form>
+
+                        <hr class="my-3">
+
+                        <!-- Additional Links -->
+                        <div class="text-center">
+                            <!-- Registration link removed - registration is disabled -->
+                            <small class="text-muted">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Need an account? Contact your administrator
+                            </small>
+                        </div>
+
+                        <!-- Security Features -->
+                        <div class="security-features">
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <i class="fas fa-shield-alt text-success"></i>
+                                    <div class="small text-muted">SSL Protected</div>
+                                </div>
+                                <div class="col-4">
+                                    <i class="fas fa-user-shield text-info"></i>
+                                    <div class="small text-muted">2FA Ready</div>
+                                </div>
+                                <div class="col-4">
+                                    <i class="fas fa-lock text-warning"></i>
+                                    <div class="small text-muted">Encrypted</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://eksheva.top/admin_assets/vendor/jquery/jquery.min.js"></script>
+    <script src="https://eksheva.top/admin_assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://eksheva.top/admin_assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://eksheva.top/admin_assets/js/sb-admin-2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Generate browser fingerprint
+            generateBrowserFingerprint();
+
+            // Password toggle functionality
+            $('#togglePassword').click(function() {
+                const passwordField = $('#password');
+                const icon = $(this).find('i');
+
+                if (passwordField.attr('type') === 'password') {
+                    passwordField.attr('type', 'text');
+                    icon.removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    passwordField.attr('type', 'password');
+                    icon.removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+
+            // Form submission with loading state
+            $('#loginForm').on('submit', function(e) {
+                const button = $('#loginButton');
+                const buttonText = button.find('.button-text');
+
+                // Show loading state
+                button.prop('disabled', true);
+                buttonText.html('<i class="fas fa-spinner fa-spin mr-2"></i>Signing In...');
+                $('#loadingOverlay').show();
+
+                // Update browser fingerprint before submission
+                generateBrowserFingerprint();
+            });
+
+            // Auto-dismiss alerts after 10 seconds
+            setTimeout(function() {
+                $('.alert').fadeOut('slow');
+            }, 10000);
+
+            // Add input animations
+            $('.form-control').on('focus', function() {
+                $(this).parent().addClass('focused');
+            }).on('blur', function() {
+                if (!$(this).val()) {
+                    $(this).parent().removeClass('focused');
+                }
+            });
+
+            // Security monitoring
+            let interactionCount = 0;
+            let suspiciousActivity = false;
+
+            // Monitor for suspicious activity
+            $(document).on('keydown mousedown', function() {
+                interactionCount++;
+
+                // Check for bot-like behavior
+                if (interactionCount > 100) {
+                    suspiciousActivity = true;
+                    $('<input>').attr({
+                        type: 'hidden',
+                        name: 'suspicious_activity',
+                        value: 'true'
+                    }).appendTo('#loginForm');
+                }
+            });
+
+            // Monitor form timing
+            const formStartTime = Date.now();
+            $('#loginForm').on('submit', function() {
+                const formEndTime = Date.now();
+                const timeTaken = (formEndTime - formStartTime) / 1000;
+
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: 'form_timing',
+                    value: timeTaken
+                }).appendTo(this);
+            });
+        });
+
+        // Generate browser fingerprint for security
+        function generateBrowserFingerprint() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.textBaseline = 'top';
+            ctx.font = '14px Arial';
+            ctx.fillText('Browser fingerprint', 2, 2);
+
+            const fingerprint = btoa(JSON.stringify({
+                userAgent: navigator.userAgent,
+                language: navigator.language,
+                platform: navigator.platform,
+                screen: screen.width + 'x' + screen.height,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                canvas: canvas.toDataURL(),
+                timestamp: Date.now()
+            }));
+
+            $('#browserFingerprint').val(fingerprint);
+        }
+
+        // Refresh CAPTCHA
+        function refreshCaptcha() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = '';
+            for (let i = 0; i < 6; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+
+            $('#captchaCode').text(result);
+            $('#captchaHidden').val(result);
+
+            // Add refresh animation
+            $('#captchaCode').addClass('animate__animated animate__pulse');
+            setTimeout(() => {
+                $('#captchaCode').removeClass('animate__animated animate__pulse');
+            }, 1000);
+        }
+
+        // Prevent right-click and common shortcuts in production
+        
+        // Auto-focus email field
+        $('#email').focus();
+
+        // Add smooth scrolling for mobile
+        if (window.innerHeight < 700) {
+            $('html, body').css({
+                'scroll-behavior': 'smooth',
+                'overflow-y': 'auto'
+            });
+        }
+    </script>
+</body>
+
+</html>

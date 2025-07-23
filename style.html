@@ -1,0 +1,867 @@
+আপনি একদম ঠিক বলেছেন! আমি দুঃখিত, আমি আপনার মূল ডিজাইনের সব লিংক এবং প্রত্যয়নপত্রগুলো রাখিনি। এখন আমি সব কিছু ঠিক করে দেব - সুন্দর ডিজাইন রেখে আপনার সব লিংক এবং প্রত্যয়নপত্র যোগ করব।
+
+<function_calls> <invoke name="full_file_rewrite"> <parameter name="file_path">index.html</parameter> <parameter name="file_contents"><!DOCTYPE html>
+
+<html lang="bn"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>প্রত্যয়ন সার্ভার - ডিজিটাল বাংলাদেশ</title> <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"> <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <style> :root { --primary-color: #2c3e50; --secondary-color: #3498db; --accent-color: #e74c3c; --success-color: #27ae60; --warning-color: #f39c12; --info-color: #8e44ad; --light-bg: #ecf0f1; --dark-bg: #34495e; --card-shadow: 0 10px 30px rgba(0,0,0,0.1); --hover-shadow: 0 15px 40px rgba(0,0,0,0.15); --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%); --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); --border-radius: 15px; --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Noto Sans Bengali', sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #2c3e50;
+        overflow-x: hidden;
+    }
+
+    /* Header Styles */
+    .header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 1rem 2rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .logo-icon {
+        width: 50px;
+        height: 50px;
+        background: var(--gradient-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    .logo-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        position: relative;
+    }
+
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--gradient-secondary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+    }
+
+    .user-name {
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+
+    /* Main Layout */
+    .main-container {
+        display: flex;
+        margin-top: 90px;
+        min-height: calc(100vh - 90px);
+    }
+
+    /* Sidebar */
+    .sidebar {
+        width: 320px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 2rem 0;
+        position: fixed;
+        height: calc(100vh - 90px);
+        overflow-y: auto;
+        box-shadow: 8px 0 32px rgba(0,0,0,0.1);
+    }
+
+    .sidebar-header {
+        padding: 0 2rem 1rem;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        margin-bottom: 1rem;
+    }
+
+    .sidebar-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .nav-menu {
+        list-style: none;
+        padding: 0 1rem;
+    }
+
+    .nav-item {
+        margin-bottom: 0.5rem;
+    }
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+        color: var(--primary-color);
+        text-decoration: none;
+        border-radius: var(--border-radius);
+        transition: var(--transition);
+        font-weight: 500;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .nav-link::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-primary);
+        transition: var(--transition);
+        z-index: -1;
+    }
+
+    .nav-link:hover::before,
+    .nav-link.active::before {
+        left: 0;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: white;
+        transform: translateX(5px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    .nav-icon {
+        font-size: 1.1rem;
+        width: 20px;
+        text-align: center;
+    }
+
+    /* Content Area */
+    .content {
+        flex: 1;
+        margin-left: 320px;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .content-header {
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .page-subtitle {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 400;
+    }
+
+    /* Service Cards Grid */
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+.service-link {
+  text-decoration: none;
+  color: inherit;
+}
+    .service-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--gradient-primary);
+        transform: scaleX(0);
+        transition: var(--transition);
+    }
+
+    .service-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--hover-shadow);
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .service-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        background: var(--gradient-primary);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        transition: var(--transition);
+    }
+
+    .service-card:hover .service-icon {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+    }
+
+    .service-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .service-description {
+        font-size: 0.9rem;
+        color: #7f8c8d;
+        line-height: 1.5;
+    }
+
+    /* Profile Section */
+    .profile-section {
+        display: none;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        box-shadow: var(--card-shadow);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: var(--gradient-secondary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: white;
+        box-shadow: 0 15px 35px rgba(240, 147, 251, 0.3);
+    }
+
+    .profile-info h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .profile-info p {
+        color: #7f8c8d;
+        font-size: 1.1rem;
+    }
+
+    .profile-details {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .detail-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(52, 152, 219, 0.1);
+        border-radius: 10px;
+        border-left: 4px solid var(--secondary-color);
+    }
+
+    .detail-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--secondary-color);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+
+    .detail-content strong {
+        display: block;
+        color: var(--primary-color);
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+
+    .detail-content span {
+        color: #7f8c8d;
+    }
+
+    /* Apply Section */
+    .apply-section {
+        display: none;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        box-shadow: var(--card-shadow);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .apply-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .apply-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+    }
+
+    .apply-buttons {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .apply-btn {
+        padding: 1.5rem 3rem;
+        border: none;
+        border-radius: var(--border-radius);
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .apply-btn.primary {
+        background: var(--gradient-primary);
+        color: white;
+    }
+
+    .apply-btn.secondary {
+        background: var(--gradient-secondary);
+        color: white;
+    }
+
+    .apply-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    }
+
+    /* Certificate Section */
+    .certificate-section {
+        display: block;
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        cursor: pointer;
+    }
+
+    /* Notification Badge */
+    .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: var(--accent-color);
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+        .sidebar {
+            width: 280px;
+        }
+        .content {
+            margin-left: 280px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .mobile-menu-toggle {
+            display: block;
+        }
+        .sidebar {
+            transform: translateX(-100%);
+            transition: var(--transition);
+        }
+        .sidebar.active {
+            transform: translateX(0);
+        }
+        .content {
+            margin-left: 0;
+        }
+        .services-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .header-content {
+            padding: 0 1rem;
+        }
+        .content {
+            padding: 1rem;
+        }
+        .page-title {
+            font-size: 2rem;
+        }
+        .services-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .service-card {
+            padding: 1.5rem;
+        }
+        .profile-header {
+            flex-direction: column;
+            text-align: center;
+        }
+        .apply-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    /* Smooth Scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
+    }
+</style>
+<script>
+    function showApply() {
+        document.getElementById('apply-section').style.display = 'block';
+        document.getElementById('profile-section').style.display = 'none';
+        document.getElementById('certificate-section').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        updateActiveNav('apply');
+    }
+
+    function showProfile() {
+        document.getElementById('profile-section').style.display = 'block';
+        document.getElementById('apply-section').style.display = 'none';
+        document.getElementById('certificate-section').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        updateActiveNav('profile');
+    }
+
+    function showCertificates() {
+        document.getElementById('certificate-section').style.display = 'block';
+        document.getElementById('profile-section').style.display = 'none';
+        document.getElementById('apply-section').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        updateActiveNav('certificates');
+    }
+
+    function showNewUserForm() {
+        alert('নতুন ব্যবহারকারীর তথ্য ফর্ম এখান থেকে শুরু হবে।');
+    }
+
+    function updateActiveNav(section) {
+        // Remove active class from all nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        // Add active class to current section
+        if (section === 'certificates') {
+            document.querySelector('.nav-link[onclick="showCertificates()"]').classList.add('active');
+        } else if (section === 'profile') {
+            document.querySelector('.nav-link[onclick="showProfile()"]').classList.add('active');
+        } else if (section === 'apply') {
+            document.querySelector('.nav-link[onclick="showApply()"]').classList.add('active');
+        }
+    }
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active');
+    }
+</script>
+</head> <body> <!-- Header --> <header class="header"> <div class="header-content"> <div class="logo"> <div class="logo-icon"> <i class="fas fa-certificate"></i> </div> <div class="logo-text">প্রত্যয়ন পোর্টাল</div> </div> <button class="mobile-menu-toggle" onclick="toggleSidebar()"> <i class="fas fa-bars"></i> </button> <div class="user-profile"> <div class="user-avatar">রা</div> <div class="user-name">রাকিবুল মিয়া</div> <div class="notification-badge">3</div> </div> </div> </header>
+<!-- Main Container -->
+<div class="main-container">
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title">
+                <i class="fas fa-list"></i>
+                সব মেনু
+            </div>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link active" onclick="showCertificates()">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    ড্যাশবোর্ড
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" onclick="showProfile()">
+                    <i class="nav-icon fas fa-user-cog"></i>
+                    প্রোফাইল ব্যবস্থাপনা
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" onclick="showApply()">
+                    <i class="nav-icon fas fa-id-card"></i>
+                    নাগরিক ইউনিক নম্বর
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-list-alt"></i>
+                    সকল আবেদন তালিকা
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" onclick="showApply()">
+                    <i class="nav-icon fas fa-plus-circle"></i>
+                    নতুন আবেদন করুন
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-search"></i>
+                    ট্র্যাক আইডি নাম্বার
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-print"></i>
+                    জীবন বৃত্তান্ত তথ্য প্রিন্ট
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-file-alt"></i>
+                    জীবন বৃত্তান্ত আবেদনসমূহ
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-home"></i>
+                    হোল্ডিং তথ্য প্রিন্ট
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-building"></i>
+                    হোল্ডিং তথ্য আবেদনসমূহ
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-certificate"></i>
+                    সনদ প্রিন্ট করুন
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="হিসাবের_খাতা (3).html" class="nav-link">
+                    <i class="nav-icon fas fa-calculator"></i>
+                    হিসাব খাতা
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-question-circle"></i>
+                    ব্যবহার নির্দেশিকা
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                    লগ আউট
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Content Area -->
+    <main class="content">
+        <!-- Profile Section -->
+        <div id="profile-section" class="profile-section">
+            <div class="profile-header">
+                <div class="profile-avatar">রা</div>
+                <div class="profile-info">
+                    <h2>রাকিবুল মিয়া</h2>
+                    <p>নিবন্ধিত ব্যবহারকারী</p>
+                </div>
+            </div>
+            <div class="profile-details">
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="detail-content">
+                        <strong>ই-মেইল</strong>
+                        <span>rakibhossain72730@gmail.com</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="detail-content">
+                        <strong>মোবাইল</strong>
+                        <span>০১৯০০৫৮২৯২৯১</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="detail-content">
+                        <strong>জন্ম নিবন্ধন</strong>
+                        <span>২০০৯১৫৯২৫০০০০৯৫৮</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="detail-content">
+                        <strong>ইউনিয়ন</strong>
+                        <span>৪ নং ইউনিয়ন, ইটনা, কিশোরগঞ্জ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Apply Section -->
+        <div id="apply-section" class="apply-section">
+            <div class="apply-header">
+                <h2>ব্যবহারকারীর ধরন</h2>
+                <p class="page-subtitle">আপনার প্রয়োজন অনুযায়ী সেবা নির্বাচন করুন</p>
+            </div>
+            <div class="apply-buttons">
+                <button class="apply-btn primary" onclick="showNewUserForm()">
+                    <i class="fas fa-user-plus"></i>
+                    নতুন ব্যবহারকারী
+                </button>
+                <button class="apply-btn secondary">
+                    <i class="fas fa-user-check"></i>
+                    নির্ধারিত ব্যবহারকারী
+                </button>
+            </div>
+        </div>
+
+        <!-- Certificate Section -->
+        <div id="certificate-section" class="certificate-section">
+            <div class="content-header">
+                <h1 class="page-title">সনদ সেবাসমূহ</h1>
+                <p class="page-subtitle">ডিজিটাল বাংলাদেশের আধুনিক সেবা পোর্টাল</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-house"></i>
+                    </div>
+                    <h4 class="service-title">হোল্ডিং ট্যাক্স</h4>
+                    <p class="service-description">আপনার সম্পত্তির হোল্ডিং ট্যাক্স সংক্রান্ত সেবা</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-people-group"></i>
+                    </div>
+                    <h4 class="service-title">ওয়ারিশান সনদ</h4>
+                    <p class="service-description">আইনি উত্তরাধিকার প্রমাণের জন্য প্রয়োজনীয় সনদ</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4 class="service-title">পারিবারিক সনদ</h4>
+                    <p class="service-description"> </p>
+                    </div>
+
+
+                        <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-people-group"></i>
+                    </div>
+                    <h4 class="service-title">ওয়ারিশান সনদ</h4>
+                    <p class="service-description">আইনি উত্তরাধিকার প্রমাণের জন্য প্রয়োজনীয় সনদ</p>
+                </div>
+
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-people-group"></i>
+                    </div>
+                    <h4 class="service-title">ওয়ারিশান সনদ</h4>
+                    <p class="service-description">আইনি উত্তরাধিকার প্রমাণের জন্য প্রয়োজনীয় সনদ</p>
+                </div>
+
+
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-people-group"></i>
+                    </div>
+                    <h4 class="service-title">ওয়ারিশান সনদ</h4>
+                    <p class="service-description">আইনি উত্তরাধিকার প্রমাণের জন্য প্রয়োজনীয় সনদ</p>
+                </div>
+
+
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-people-group"></i>
+                    </div>
+                    <h4 class="service-title">ওয়ারিশান সনদ</h4>
+                    <p class="service-description">আইনি উত্তরাধিকার প্রমাণের জন্য প্রয়োজনীয় সনদ</p>
+                </div>
+
+
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-people-group"></i>
+                    </div>
+                    <h4 class="service-title">ওয়ারিশান সনদ</h4>
+                    <p class="service-description">আইনি উত্তরাধিকার প্রমাণের জন্য প্রয়োজনীয় সনদ</p>
+                </div>
+
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-people-group"></i>
+                    </div>
+                    <h4 class="service-title">ওয়ারিশান সনদ</h4>
+                    <p class="service-description">আইনি উত্তরাধিকার প্রমাণের জন্য প্রয়োজনীয় সনদ</p>
+                </div>
+
+
+              <a href="input.html" class="service-link">
+                
+    <div class="service-card">
+        <div class="service-icon">
+            <i class="fas fa-people-group"></i>
+        </div>
+        <h4 class="service-title">ওয়ারিশান সনদ</h4>
+        <p class="service-description">আইনি উত্তরাধিকার প্রমাণের জন্য প্রয়োজনীয় সনদ</p>
+    </div>
+</a>

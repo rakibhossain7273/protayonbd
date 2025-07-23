@@ -1,0 +1,772 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>প্রত্যয়ন ড্যাশবোর্ড</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #3b82f6;
+      --secondary-color: #64748b;
+      --success-color: #10b981;
+      --warning-color: #f59e0b;
+      --error-color: #ef4444;
+      --background-color: #f8fafc;
+      --surface-color: #ffffff;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .app-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .logo i {
+      font-size: 2rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .profile-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--surface-color);
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .profile-section:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-1px);
+    }
+
+    .profile-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.25rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-md);
+    }
+
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .profile-name {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+
+    .profile-mobile {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .page-title h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-title p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 300;
+    }
+
+    /* Form Container */
+    .form-container {
+      background: var(--surface-color);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .form-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .form-header h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-header p {
+      font-size: 1rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-body {
+      padding: 2.5rem;
+    }
+
+    /* Form Groups */
+    .form-group {
+      margin-bottom: 1.75rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      background: var(--surface-color);
+      color: var(--text-primary);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .form-control:hover {
+      border-color: var(--primary-light);
+    }
+
+    /* Select Styling */
+    .select-wrapper {
+      position: relative;
+    }
+
+    .select-wrapper::after {
+      content: '\f107';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      pointer-events: none;
+      transition: transform 0.3s ease;
+    }
+
+    .select-wrapper:hover::after {
+      color: var(--primary-color);
+    }
+
+    select.form-control {
+      appearance: none;
+      background-image: none;
+      cursor: pointer;
+      padding-right: 3rem;
+    }
+
+    /* Conditional Fields Animation */
+    .conditional-field {
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .conditional-field.hidden {
+      max-height: 0;
+      margin-bottom: 0;
+      opacity: 0;
+    }
+
+    .conditional-field.visible {
+      max-height: 200px;
+      opacity: 1;
+    }
+
+    /* Submit Button */
+    .submit-btn {
+      width: 100%;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      margin-top: 1rem;
+      font-family: inherit;
+    }
+
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .submit-btn:hover::before {
+      left: 100%;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .submit-btn i {
+      margin-right: 0.5rem;
+    }
+
+    /* Input Icons */
+    .input-group {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      font-size: 1rem;
+      z-index: 1;
+    }
+
+    .input-group .form-control {
+      padding-left: 3rem;
+    }
+
+    .input-group .form-control:focus + .input-icon {
+      color: var(--primary-color);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header {
+        padding: 1rem;
+      }
+
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+      }
+
+      .profile-section {
+        justify-content: center;
+      }
+
+      .main-content {
+        padding: 1rem;
+      }
+
+      .page-title h1 {
+        font-size: 2rem;
+      }
+
+      .form-body {
+        padding: 1.5rem;
+      }
+
+      .logo {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page-title h1 {
+        font-size: 1.75rem;
+      }
+
+      .form-header {
+        padding: 1.5rem;
+      }
+
+      .form-body {
+        padding: 1rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.25rem;
+      }
+    }
+
+    /* Loading Animation */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Success/Error States */
+    .form-control.success {
+      border-color: var(--success-color);
+    }
+
+    .form-control.error {
+      border-color: var(--error-color);
+    }
+
+    /* Hover Effects */
+    .form-group:hover label {
+      color: var(--primary-color);
+    }
+
+    /* Focus Within */
+    .form-group:focus-within label {
+      color: var(--primary-color);
+      transform: translateY(-2px);
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-certificate"></i>
+          <span>প্রত্যয়ন ড্যাশবোর্ড</span>
+        </div>
+        
+        <div class="profile-section">
+          <div class="profile-avatar">
+            রা
+          </div>
+          <div class="profile-info">
+            <div class="profile-name">রাকিবুল হাসান</div>
+            <div class="profile-mobile">
+              <i class="fas fa-phone"></i>
+              01828083730
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-title">
+        <h1>প্রত্যয়ন সেবা</h1>
+        <p>দ্রুত এবং নির্ভরযোগ্য প্রত্যয়নপত্র প্রস্তুত করুন</p>
+      </div>
+
+      <div class="form-container">
+        <div class="form-header">
+          <h2>প্রত্যয়ন তথ্য প্রদান</h2>
+          <p>নিচের ফর্মটি পূরণ করে আপনার প্রত্যয়নপত্র তৈরি করুন</p>
+        </div>
+
+        <div class="form-body">
+          <form id="certificateForm">
+            <!-- Certificate Type -->
+            <div class="form-group">
+              <label for="certType">
+                <i class="fas fa-file-alt"></i>
+                সনদ টাইপ
+              </label>
+              <div class="select-wrapper">
+                <select id="certType" class="form-control" onchange="toggleFields()">
+                  <option value="newVoter">প্রত্যয়ন পত্র</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Union Selection -->
+            <div class="form-group">
+              <label for="union">
+                <i class="fas fa-map-marker-alt"></i>
+                ইউনিয়ন
+              </label>
+              <div class="select-wrapper">
+                <select id="union" class="form-control" onchange="autoPost()">
+                  <option value="">ইউনিয়ন নির্বাচন করুন</option>
+                  <option value="১নং রায়টুটী|রায়টুটী|মোহাম্মদ এনামূল হক খান মিল্কী">১নং রায়টুটী</option>
+                  <option value="২নং ধনপুর|ধনপুর|প্রদীপ কুমার দাস">২নং ধনপুর</option>
+                  <option value="৩নং মৃগা|মৃগা|মোঃ দারুল ইসলাম">৩নং মৃগা</option>
+                  <option value="৪নং ইটনা|ইটনা|মোঃ সোহাগ মিয়া">৪নং ইটনা</option>
+                  <option value="৫নং বড়িবাড়ি|বাদলা|আঃ ছাত্তার">৫নং বড়িবাড়ি</option>
+                  <option value="৬নং বাদলা|বাদলা|আদিলুজ্জামান ভূঞা">৬নং বাদলা</option>
+                  <option value="৭নং এলংজুরী|এলংজুরী|রুবেল মিয়া">৭নং এলংজুরী</option>
+                  <option value="৮নং জয়সিদ্ধি|জয়সিদ্ধি|মোঃ মনির উদ্দিন">৮নং জয়সিদ্ধি</option>
+                  <option value="৯নং চৌগাঙ্গা|চৌগাঙ্গা|সাইফুল ইসলাম">৯নং চৌগাঙ্গা</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Personal Information -->
+            <div class="form-group">
+              <label for="name">
+                <i class="fas fa-user"></i>
+                নাম
+              </label>
+              <div class="input-group">
+                <input type="text" id="name" class="form-control" placeholder="আপনার পূর্ণ নাম লিখুন">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="father">
+                <i class="fas fa-male"></i>
+                পিতার নাম
+              </label>
+              <div class="input-group">
+                <input type="text" id="father" class="form-control" placeholder="পিতার পূর্ণ নাম লিখুন">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="mother">
+                <i class="fas fa-female"></i>
+                মাতার নাম
+              </label>
+              <div class="input-group">
+                <input type="text" id="mother" class="form-control" placeholder="মাতার পূর্ণ নাম লিখুন">
+              </div>
+            </div>
+
+            <!-- Conditional Fields -->
+            <div id="nidDiv" class="form-group conditional-field">
+              <label for="nid">
+                <i class="fas fa-id-card"></i>
+                জাতীয় পরিচয়পত্র নম্বর
+              </label>
+              <div class="input-group">
+                <input type="text" id="nid" class="form-control" placeholder="১৭ সংখ্যার NID নম্বর">
+              </div>
+            </div>
+
+            <div id="birthDiv" class="form-group conditional-field hidden">
+              <label for="birth">
+                <i class="fas fa-birthday-cake"></i>
+                জন্ম নিবন্ধন নম্বর
+              </label>
+              <div class="input-group">
+                <input type="text" id="birth" class="form-control" placeholder="জন্ম নিবন্ধন নম্বর">
+              </div>
+            </div>
+
+            <!-- Address Information -->
+            <div class="form-group">
+              <label for="village">
+                <i class="fas fa-home"></i>
+                গ্রাম
+              </label>
+              <div class="input-group">
+                <input type="text" id="village" class="form-control" placeholder="গ্রামের নাম">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="post">
+                <i class="fas fa-mail-bulk"></i>
+                ডাকঘর
+              </label>
+              <div class="input-group">
+                <input type="text" id="post" class="form-control" placeholder="ডাকঘরের নাম">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="ward">
+                <i class="fas fa-map-signs"></i>
+                ওয়ার্ড
+              </label>
+              <div class="input-group">
+                <input type="text" id="ward" class="form-control" placeholder="ওয়ার্ড নম্বর">
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" class="submit-btn" onclick="openCertificate()">
+              <i class="fas fa-file-download"></i>
+              প্রত্যয়ন দেখান
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function toggleFields() {
+      const type = document.getElementById("certType").value;
+      const nidDiv = document.getElementById("nidDiv");
+      const birthDiv = document.getElementById("birthDiv");
+      
+      if (type === "default") {
+        nidDiv.classList.remove("hidden");
+        nidDiv.classList.add("visible");
+        birthDiv.classList.remove("visible");
+        birthDiv.classList.add("hidden");
+      } else {
+        nidDiv.classList.remove("visible");
+        nidDiv.classList.add("hidden");
+        birthDiv.classList.remove("hidden");
+        birthDiv.classList.add("visible");
+      }
+    }
+
+    function autoPost() {
+      const val = document.getElementById('union').value;
+      const parts = val.split('|');
+      if (parts.length > 1) {
+        document.getElementById('post').value = parts[1];
+        
+        // Add visual feedback
+        const postField = document.getElementById('post');
+        postField.classList.add('success');
+        setTimeout(() => {
+          postField.classList.remove('success');
+        }, 2000);
+      }
+    }
+
+    function openCertificate() {
+      const submitBtn = document.querySelector('.submit-btn');
+      const originalText = submitBtn.innerHTML;
+      
+      // Show loading state
+      submitBtn.innerHTML = '<span class="loading"></span> প্রক্রিয়াকরণ...';
+      submitBtn.disabled = true;
+      
+      // Collect form data
+      const data = {
+        type: document.getElementById("certType").value,
+        union: document.getElementById("union").value,
+        name: document.getElementById("name").value,
+        father: document.getElementById("father").value,
+        mother: document.getElementById("mother").value,
+        nid: document.getElementById("nid").value,
+        birth: document.getElementById("birth").value,
+        village: document.getElementById("village").value,
+        post: document.getElementById("post").value,
+        ward: document.getElementById("ward").value
+      };
+      
+      // Simulate processing delay
+      setTimeout(() => {
+        const params = new URLSearchParams(data).toString();
+        window.open("normal.html?" + params, "_blank");
+        
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }, 1500);
+    }
+
+    // Form validation
+    function validateForm() {
+      const requiredFields = ['union', 'name', 'father', 'mother', 'village', 'post', 'ward'];
+      let isValid = true;
+      
+      requiredFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (!field.value.trim()) {
+          field.classList.add('error');
+          isValid = false;
+        } else {
+          field.classList.remove('error');
+          field.classList.add('success');
+        }
+      });
+      
+      return isValid;
+    }
+
+    // Add input event listeners for real-time validation
+    document.addEventListener('DOMContentLoaded', function() {
+      const inputs = document.querySelectorAll('.form-control');
+      inputs.forEach(input => {
+        input.addEventListener('input', function() {
+          if (this.value.trim()) {
+            this.classList.remove('error');
+            this.classList.add('success');
+          } else {
+            this.classList.remove('success');
+          }
+        });
+      });
+      
+      // Initialize field visibility
+      toggleFields();
+    });
+
+    // Enhanced form submission with validation
+    function openCertificate() {
+      if (!validateForm()) {
+        alert('দয়া করে সকল প্রয়োজনীয় তথ্য পূরণ করুন।');
+        return;
+      }
+      
+      const submitBtn = document.querySelector('.submit-btn');
+      const originalText = submitBtn.innerHTML;
+      
+      // Show loading state
+      submitBtn.innerHTML = '<span class="loading"></span> প্রক্রিয়াকরণ...';
+      submitBtn.disabled = true;
+      
+      // Collect form data
+      const data = {
+        type: document.getElementById("certType").value,
+        union: document.getElementById("union").value,
+        name: document.getElementById("name").value,
+        father: document.getElementById("father").value,
+        mother: document.getElementById("mother").value,
+        nid: document.getElementById("nid").value,
+        birth: document.getElementById("birth").value,
+        village: document.getElementById("village").value,
+        post: document.getElementById("post").value,
+        ward: document.getElementById("ward").value
+      };
+      
+      // Simulate processing delay
+      setTimeout(() => {
+        const params = new URLSearchParams(data).toString();
+        window.open("prattayan_certificate_preview.html?" + params, "_blank");
+        
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
